@@ -1,0 +1,17 @@
+{
+    "inputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "input-user"
+        },
+        "flowVariables": {
+            "temperature": {
+                "connectorName": "#_custom_mule_metadata_type_#",
+                "typeId": "input-user"
+            }
+        }
+    },
+    "outputMessageMetadata": {},
+    "id": "b34eba98-6b33-49a9-9618-330fe6a7b69f",
+    "version": "5.2.0.0"
+}

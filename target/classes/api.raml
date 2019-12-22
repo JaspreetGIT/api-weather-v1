@@ -1,0 +1,26 @@
+#%RAML 1.0
+baseUri: https://localhost:8080/api/v1/product
+
+title: User API
+version: v1
+protocols: 
+ - HTTPS
+mediaType: application/json
+
+types:
+  user-request: !include data-types/user-in-details.raml
+  user-response: !include data-types/user-out-details.raml
+
+/userDetails:
+  post:
+    description: get user weather details
+    body:
+      application/json:
+        type: user-request
+        example: !include examples/post-user-request.json
+    responses:
+      201:
+        body:
+          application/json:
+            type: user-response
+            example: !include examples/post-user-response.json
