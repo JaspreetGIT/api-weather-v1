@@ -13,6 +13,8 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
         <set-variable variableName="orgPayload" value="#[payload]" mimeType="application/java" doc:name="Set Org Payload"/>
         <set-variable variableName="location" value="#[flowVars.orgPayload.Items[4]],#[flowVars.orgPayload.Items[3]]" doc:name="Init location"/>
         <flow-ref name="getweatherdetails" doc:name="Get Weather Details"/>
+        <invoke name="GetTimeStamp" object-ref="DateUtils" method="convertDate" methodArguments="#[flowVars.weather.datetime],#[flowVars.location]" methodArgumentTypes="java.lang.Integer,java.lang.String" doc:name="Convert TimeStamp"/>
+        <set-variable variableName="datetime" value="#[payload]" doc:name="Set Datetime"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="b34eba98-6b33-49a9-9618-330fe6a7b69f">
             <dw:input-payload doc:sample="examples/post-user-request.json" mimeType="application/json"/>
             <dw:input-variable mimeType="application/json" variableName="temperature"/>

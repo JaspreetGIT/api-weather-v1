@@ -29,9 +29,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
    datetime : payload.dt
 }]]></dw:set-variable>
         </dw:transform-message>
-        <invoke name="GetTimeStamp" object-ref="DateUtils" method="convertDate" methodArguments="#[flowVars.weather.datetime],#[flowVars.location]" methodArgumentTypes="java.lang.Integer,java.lang.String" doc:name="Convert TimeStamp"/>
-        <set-variable variableName="datetime" value="#[payload]" doc:name="Set Datetime"/>
-
+        
         <logger level="INFO" doc:name="Get Weather Details- Done"/>
     </sub-flow>
 </mule>
