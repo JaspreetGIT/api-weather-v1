@@ -6,6 +6,11 @@ version: v1
 protocols: 
  - HTTPS
 mediaType: application/json
+securitySchemes:
+  basic:
+    description: |
+      This API supports Basic Authentication.
+    type: Basic Authentication
 
 types:
   user-request: !include data-types/user-in-details.raml
@@ -13,7 +18,8 @@ types:
 
 /userDetails:
   post:
-    description: get user weather details
+    description: get user weather details  
+    securedBy: [basic]
     body:
       application/json:
         type: user-request
