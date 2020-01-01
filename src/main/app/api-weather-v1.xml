@@ -36,7 +36,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 	
     <flow name="api-weather-v1Flow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="${http.basePath}/*" doc:name="HTTP"/>
-        <mule-ss:http-security-filter realm="mule-realm" securityProviders="memory-provider"/>
+        <!--mule-ss:http-security-filter realm="mule-realm" securityProviders="memory-provider"/-->
         <apikit:router config-ref="apiRouter" doc:name="APIkit Router"/>
         <exception-strategy ref="api-weather-v1Mapping_Exception_Strategy" doc:name="Reference Exception Strategy"/>
     </flow>

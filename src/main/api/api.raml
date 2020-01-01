@@ -6,20 +6,44 @@ version: v1
 protocols: 
  - HTTPS
 mediaType: application/json
-securitySchemes:
-  basic:
-    description: |
-      This API supports Basic Authentication.
-    type: Basic Authentication
-
 types:
   user-request: !include data-types/user-in-details.raml
   user-response: !include data-types/user-out-details.raml
 
+securitySchemes:
+  oauth_2_0:
+    description: |
+        This API supports OAuth 2.0 for authenticating all API requests.
+    type: OAuth 2.0
+    describedBy:
+      headers:
+        Authorization:
+          description: |
+            Used to send a valid OAuth 2 access token. Do not use with the "access_token" 
+            query string parameter.
+            type: string
+      queryParameters:
+        access_token:
+          description: |
+            Used to send a valid OAuth 2 access token. Do not use together with the "Authorization" 
+            header
+            type: string
+    settings:
+      authorizationUri: https://oauth2provider.cloudhub.io/authorize
+      accessTokenUri: https://oauth2provider.cloudhub.io/access_token
+      authorizationGrants: [authorization_code, password, client_credentials, implicit]
+
+traits:
+  ClientIdEnforceable: !include common/client-id-enforceable.raml   
+
 /userDetails:
   post:
     description: get user weather details  
-    securedBy: [basic]
+    is: [ ClientIdEnforceable]
+    queryParameters:
+      access_token:      
+        description: "This is the OAuth 2.0a token that needs to be passed in the URL"
+        example: "J1qK1c18UUGJFAzz9xnH56584l4"
     body:
       application/json:
         type: user-request
